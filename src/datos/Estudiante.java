@@ -1,4 +1,5 @@
 package datos;
+/** @author Curso de Git*/
 public class Estudiante {
     private String id;
     private String nombre;
