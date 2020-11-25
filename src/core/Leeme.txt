@@ -1,0 +1,7 @@
+PASOS PARA CONFIGURAR LA CLASE CONEXION
+
+1. Haga una copia de "ConexionExample.java" con el nombre "Conexion.java" en 
+    este mismo package (o directorio) 
+
+2. Luego escriba dentro de la clase los datos de su usuario y contraseña para
+    conectarse a su base de datos en postgresql.

@@ -1,6 +1,6 @@
 package negocio;
 /** @author alfreding0*/
-import datos.Conexion;
+import core.Conexion;
 import datos.Estudiante;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
