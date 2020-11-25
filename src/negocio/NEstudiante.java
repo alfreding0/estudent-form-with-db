@@ -1,5 +1,5 @@
 package negocio;
-/** @author Curso de Git*/
+/** @author alfreding0*/
 import datos.Conexion;
 import datos.Estudiante;
 import java.sql.ResultSet;
@@ -18,13 +18,17 @@ public class NEstudiante {
         cnx=new Conexion();
     }
     
+    public void desconectar(){
+        cnx.desconectar();
+    }
+    
     public void insertarEstudiante(String nombre, String apellido, String ci, String sexo, String telefono) {
         est.setNombre(nombre);
         est.setApellido(apellido);
         est.setCi(ci);
         est.setSexo(sexo);
         est.setTelefono(telefono);
-        cnx.EjecutarComando(est.insertar());
+        cnx.ejectarComando(est.insertar());
     }
     
     public void buscarEstudiante(JTable tablaEstudiante) {
@@ -32,7 +36,7 @@ public class NEstudiante {
             String [] titulos = {"ID","NOMBRES","APELLIDOS","CI","SEXO","TELEFONO"};
             model = new DefaultTableModel(null, titulos);
             
-            ResultSet rs=cnx.EjecutarConsulta(est.buscar());
+            ResultSet rs=cnx.ejecutarConsulta(est.buscar());
             ResultSetMetaData datos = rs.getMetaData();
             
             int nc=datos.getColumnCount();
@@ -50,18 +54,20 @@ public class NEstudiante {
         }
     }
     
-    public void eliminarEstudiante(String id) {
+    public  void actualizarEstudiante(int id, String nombre, String apellido, String ci, String sexo, String telefono) {
         est.setId(id);
-        cnx.EjecutarComando(est.eliminar());
-    }
-    
-    public  void actualizarEstudiante(String codigo, String nombre, String apellido, String ci, String sexo, String telefono) {
-        est.setId(ci);
         est.setNombre(nombre);
         est.setApellido(apellido);
         est.setCi(ci);
         est.setSexo(sexo);
         est.setTelefono(telefono);
-        cnx.EjecutarComando( est.actualizar() );
+        
+        cnx.ejectarComando( est.actualizar() );
     }
+    
+    public void eliminarEstudiante(int id) {
+        est.setId(id);
+        cnx.ejectarComando(est.eliminar());
+    }
+    
 }

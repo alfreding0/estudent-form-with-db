@@ -1,8 +1,7 @@
 package main;
-
+/** @author alfreding0*/
 import presentacion.FormEstudiante;
 
-/** @author Curso de Git*/
 public class Main {
     public static void main(String[] args) {
         try {

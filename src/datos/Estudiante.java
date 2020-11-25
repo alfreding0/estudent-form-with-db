@@ -1,7 +1,7 @@
 package datos;
-/** @author Curso de Git*/
+/** @author alfreding0*/
 public class Estudiante {
-    private String id;
+    private int id;
     private String nombre;
     private String apellido;
     private String ci;
@@ -9,7 +9,7 @@ public class Estudiante {
     private String telefono;
 
     public Estudiante() {
-        this.id = "";
+        this.id = 0;
         this.nombre = "";
         this.apellido = "";
         this.ci = "";
@@ -17,11 +17,11 @@ public class Estudiante {
         this.telefono = "";
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
