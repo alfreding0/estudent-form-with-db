@@ -101,11 +101,13 @@ public class FormEstudiante extends javax.swing.JFrame {
     }
     
     private void eliminar(){
-        int id = Integer.parseInt(jtfid.getText());
-        estN.eliminarEstudiante(id);
-        estN.buscarEstudiante(jTableEstudiante);
-        
-        this.bloquearBotones();
+        int n = JOptionPane.showConfirmDialog(rootPane, "¿Está seguro de eliminar a \n"+jtfnombres.getText()+" "+jtfapellidoss.getText()+" ?");
+        if(n==JOptionPane.YES_OPTION){
+            int id = Integer.parseInt(jtfid.getText());
+            estN.eliminarEstudiante(id);
+            estN.buscarEstudiante(jTableEstudiante);
+            this.bloquearBotones();
+        }
     }
     
     private void mostrar(){
@@ -285,6 +287,7 @@ public class FormEstudiante extends javax.swing.JFrame {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 80, -1));
 
         jtfid.setEditable(false);
+        jtfid.setBackground(new java.awt.Color(255, 204, 204));
         jtfid.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jtfid.setForeground(new java.awt.Color(255, 102, 0));
         jtfid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
