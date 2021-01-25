@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public final class ConexionExample{
-    private final String bd="app_curso_git";
+    private final String bd="tubasededatos";
     private final String url="jdbc:postgresql://localhost:5432/"+bd;
     private final String user="tuusuario";
     private final String pass="tucontraseña";
@@ -30,10 +30,12 @@ public final class ConexionExample{
     }
     
     public void desconectar(){
-        try {
-            cnx.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexionExample.class.getName()).log(Level.SEVERE, null, ex);
+        if(getConnection()!=null){
+            try {
+                cnx.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -41,7 +43,7 @@ public final class ConexionExample{
         return cnx; 
     }
     
-    public void ejectarComando(String Comando) {
+    public void ejecutarComando(String Comando) {
         try {
             Statement Cmd = cnx.createStatement();
             Cmd.execute(Comando);
@@ -60,5 +62,4 @@ public final class ConexionExample{
         }
         return res;
     }
-    
 }
