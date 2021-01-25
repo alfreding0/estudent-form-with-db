@@ -14,13 +14,11 @@ public class NEstudiante {
     private final Conexion cnx;
     DefaultTableModel model;
     
-    public NEstudiante() {
-        cnx=new Conexion();
-    }
+    public NEstudiante() { cnx=new Conexion(); }
     
-    public void desconectar(){
-        cnx.desconectar();
-    }
+    public void desconectar(){ cnx.desconectar(); }
+    
+    public boolean esConexionNull(){ return cnx.getConnection()==null; }
     
     public void insertarEstudiante(String nombre, String apellido, String ci, String sexo, String telefono) {
         est.setNombre(nombre);
@@ -28,7 +26,7 @@ public class NEstudiante {
         est.setCi(ci);
         est.setSexo(sexo);
         est.setTelefono(telefono);
-        cnx.ejectarComando(est.insertar());
+        cnx.ejecutarComando(est.insertar());
     }
     
     public void buscarEstudiante(JTable tablaEstudiante) {
@@ -62,12 +60,12 @@ public class NEstudiante {
         est.setSexo(sexo);
         est.setTelefono(telefono);
         
-        cnx.ejectarComando( est.actualizar() );
+        cnx.ejecutarComando( est.actualizar() );
     }
     
     public void eliminarEstudiante(int id) {
         est.setId(id);
-        cnx.ejectarComando(est.eliminar());
+        cnx.ejecutarComando(est.eliminar());
     }
     
 }

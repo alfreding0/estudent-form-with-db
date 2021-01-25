@@ -7,12 +7,29 @@ import negocio.NEstudiante;
 
 public class FormEstudiante extends javax.swing.JFrame {
     
-    NEstudiante estN;
-    public FormEstudiante() {
+    NEstudiante estN = new NEstudiante();
+    
+//    //Opción Nº1 en caso de no haber conexión con base de datos
+//    public FormEstudiante() {        
+//        if(!estN.esConexionNull()){
+//            initComponents();
+//            this.setLocationRelativeTo(null); 
+//            jLabelMensajeSinConexion.setVisible(false);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "La aplicación se va a cerrar !!!");
+//            System.exit(0);
+//        }
+//    }
+    
+    
+    //Opción Nº2 en caso de no haber conexión con base de datos
+    public FormEstudiante() {        
         initComponents();
         this.setLocationRelativeTo(null);
+        jLabelMensajeSinConexion.setVisible(false);
         
-        estN = new NEstudiante();
+        if(estN.esConexionNull())
+            this.bloquearTodo();
     }
     
     
@@ -22,6 +39,22 @@ public class FormEstudiante extends javax.swing.JFrame {
     
     
     //Funciones======================================================
+    private void bloquearTodo(){
+        jButtonNuevo.setEnabled(false);
+        jButtonGuardar.setEnabled(false);
+        jButtonModificar.setEnabled(false);
+        jButtonElimianr.setEnabled(false);
+        jButtonMostrar.setEnabled(false);
+        jButtonLimpiartable.setEnabled(false);
+        
+        jtfcarnetidentidad.setEditable(false);
+        jtfnombres.setEditable(false);
+        jtfapellidoss.setEditable(false);
+        jtftelefono.setEditable(false);
+        jComboBoxSexo.setEnabled(false);
+        jLabelMensajeSinConexion.setVisible(true);
+    }
+    
     private void limpiarCampos(){
         jtfid.setText("0");
         jtfnombres.setText("");
@@ -140,10 +173,11 @@ public class FormEstudiante extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButtonNuevo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonLimpiartable = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jtfid = new javax.swing.JTextField();
         jComboBoxSexo = new javax.swing.JComboBox<>();
+        jLabelMensajeSinConexion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -272,14 +306,14 @@ public class FormEstudiante extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 90, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 153));
-        jButton1.setText("Limpiar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpiartable.setBackground(new java.awt.Color(255, 204, 153));
+        jButtonLimpiartable.setText("Limpiar");
+        jButtonLimpiartable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonLimpiartableActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, -1));
+        jPanel2.add(jButtonLimpiartable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 130, 330));
 
@@ -301,6 +335,11 @@ public class FormEstudiante extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jComboBoxSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 140, -1));
+
+        jLabelMensajeSinConexion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelMensajeSinConexion.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelMensajeSinConexion.setText("No hay conexión a base de datos!!!");
+        jPanel1.add(jLabelMensajeSinConexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 540, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 410));
 
@@ -349,9 +388,9 @@ public class FormEstudiante extends javax.swing.JFrame {
         this.nuevo();
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonLimpiartableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiartableActionPerformed
         this.limpiarTabla();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonLimpiartableActionPerformed
 
     private void jtfnombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfnombresActionPerformed
         jtfapellidoss.requestFocus();
@@ -379,9 +418,9 @@ public class FormEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonElimianr;
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonLimpiartable;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonMostrar;
     private javax.swing.JButton jButtonNuevo;
@@ -392,6 +431,7 @@ public class FormEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelMensajeSinConexion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
