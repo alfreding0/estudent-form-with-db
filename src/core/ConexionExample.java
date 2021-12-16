@@ -14,10 +14,14 @@ public final class ConexionExample{
     private final String url="jdbc:postgresql://localhost:5432/"+bd;
     private final String user="tuusuario";
     private final String pass="tucontraseña";
+    
+    
     private Connection cnx=null;
       
     public ConexionExample(){
         conectar(); 
+        
+        System.out.println("Hello world");
     }
     
     public void conectar(){
